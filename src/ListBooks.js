@@ -38,11 +38,9 @@ class ListBooks extends Component {
         <Shelf
           books={this.state.read}
           title='Read'
-        />          
+        />
         </div>
       </div>
-
-
       <div className="open-search">
         <Link to='/search'>Add a book</Link>
       </div>

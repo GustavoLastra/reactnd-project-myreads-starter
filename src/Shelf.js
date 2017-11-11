@@ -4,7 +4,6 @@ class Shelf extends Component {
     render() {
       const { books, title } = this.props
       let showingBooks= books
-      console.log(books)
       return(
         <div className="bookshelf">
           <h2 className="bookshelf-title">{title}</h2>
@@ -15,7 +14,6 @@ class Shelf extends Component {
                 <div className="book">
                   <div className="book-top">
                     <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
-                    {console.log("IMAGE: "+book.imageLinks.thumbnail)}
                     <div className="book-shelf-changer">
                       <select>
                         <option value="none" disabled>Move to...</option>
