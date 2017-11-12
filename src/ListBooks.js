@@ -14,7 +14,7 @@ class ListBooks extends Component {
   }
 
   render() {
-    const { books, onDeleteContact } = this.props
+    const { books } = this.props
     for(var i=0;i<books.length;i++){
       if(books[i].shelf==='currentlyReading') {
         this.state.currentlyReading.push(books[i]);
