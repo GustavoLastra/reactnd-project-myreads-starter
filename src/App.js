@@ -9,7 +9,16 @@ class BooksApp extends React.Component {
   state = {
     books: []
   }
+
   componentDidMount() {
+    BooksAPI.getAll().then((books) => {
+      this.setState({ books })
+    })
+  }
+
+//Here is the function to update the books with their shelfs
+  updateBook=(shelf, book)=>{
+    BooksAPI.update(book, shelf)
     BooksAPI.getAll().then((books) => {
       this.setState({ books })
     })
@@ -21,11 +30,13 @@ class BooksApp extends React.Component {
         <Route exact path='/' render={() => (
           <ListBooks
           books={this.state.books}
+          onChageShelf= {(shelf, book) => {
+            this.updateBook(shelf, book)
+          }}
           />
         )}/>
         <Route path='/search' render={({ history }) => (
           <SearchBooks
-            books={this.state.books}
             onSearchListBooks={() => {
               history.push('/')
             }}

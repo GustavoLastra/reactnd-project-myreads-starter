@@ -8,6 +8,11 @@ class ListBooks extends Component {
     wantToRead: [],
     read: []
   }
+  //Here is the funtion that calls the parents function
+  onBookUpdate = (shelf, book) => {
+    this.props.onChageShelf(shelf, book)
+  }
+
   render() {
     const { books, onDeleteContact } = this.props
     for(var i=0;i<books.length;i++){
@@ -30,14 +35,22 @@ class ListBooks extends Component {
         <Shelf
           books={this.state.currentlyReading}
           title='Currently reading'
+          onChageShelf={(shelf, book) => {
+            this.onBookUpdate(shelf, book)
+          }}
         />
         <Shelf
           books={this.state.wantToRead}
           title='Want to read'
-        />
+          onChageShelf={(shelf, book) => {
+            this.onBookUpdate(shelf, book)
+          }}        />
         <Shelf
           books={this.state.read}
           title='Read'
+          onChageShelf={(shelf, book) => {
+            this.onBookUpdate(shelf, book)
+          }}
         />
         </div>
       </div>
