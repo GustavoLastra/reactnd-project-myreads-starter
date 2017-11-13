@@ -1,29 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom'
 import Shelf from './Shelf'
 
-class ListBooks extends Component {
-  state = {
-    currentlyReading: [],
-    wantToRead: [],
-    read: []
-  }
-  //Here is the funtion that calls the parents function
-  onBookUpdate = (shelf, book) => {
-    this.props.onChageShelf(shelf, book)
-  }
+function ListBooks (props) {
 
-  render() {
-    const { books } = this.props
-    for(var i=0;i<books.length;i++){
-      if(books[i].shelf==='currentlyReading') {
-        this.state.currentlyReading.push(books[i]);
-      }else if (books[i].shelf==='read') {
-        this.state.read.push(books[i]);
-      }else if (books[i].shelf==='wantToRead') {
-        this.state.wantToRead.push(books[i]);
-      }
-    }
+    const { books, onChageShelf } = props
+
     return(
       <div className="list-books">
       <div className="list-books-title">
@@ -33,24 +15,18 @@ class ListBooks extends Component {
         <div>
 
         <Shelf
-          books={this.state.currentlyReading}
+          books={books.filter(book => book.shelf === "currentlyReading" )}
           title='Currently reading'
-          onChageShelf={(shelf, book) => {
-            this.onBookUpdate(shelf, book)
-          }}
+          onChageShelf={onChageShelf}
         />
         <Shelf
-          books={this.state.wantToRead}
+          books={books.filter(book => book.shelf === "wantToRead" )}
           title='Want to read'
-          onChageShelf={(shelf, book) => {
-            this.onBookUpdate(shelf, book)
-          }}        />
+          onChageShelf={onChageShelf}        />
         <Shelf
-          books={this.state.read}
+          books={books.filter(book => book.shelf === "read" )}
           title='Read'
-          onChageShelf={(shelf, book) => {
-            this.onBookUpdate(shelf, book)
-          }}
+          onChageShelf={onChageShelf}
         />
         </div>
       </div>
@@ -58,6 +34,7 @@ class ListBooks extends Component {
         <Link to='/search'>Add a book</Link>
       </div>
     </div>)
-  }
+
 }
+
 export default ListBooks

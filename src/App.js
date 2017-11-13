@@ -17,44 +17,24 @@ class BooksApp extends React.Component {
   }
 
 //Here is the function to update the books with their shelfs
-  updateBook=(shelf, book)=>{
-    console.log("book: " + book.title + " shelf: " + shelf)
-    BooksAPI.update(book, shelf);
-    book.shelf = shelf;
-    this.setState({ books: this.replace(book)});
-    /*var tempBooks = this.state.books;
-    console.log("temp before: " + tempBooks);
-    for(var i=0; i <= this.state.books.length; i++) {
-      if(book.id === this.state.books[i].id){
-        console.log("found book with same id");
-        tempBooks[i].shelf=book.shelf;
-        console.log("temp after: " +  tempBooks);
-        this.setState({ books: tempBooks })
-      }
-    }*/
-  }
-  replace = (book) => {
-      let books = this.state.books.map((bookTemp) => {
-          if (bookTemp.id === book.id) {
-              return book
-          } else {
-              return bookTemp
-          }
-      })
-      return books
+  updateBook=(newShelf, book)=>{
+    BooksAPI.update(book, newShelf);
+    book.shelf = newShelf;
+    this.setState(state => ({
+        books: state.books.filter(b => b.id !== book.id).concat([ book ])
+    }));
   }
 
   render() {
     return (
       <div className="app">
+
         <Route exact path='/' render={() => (
           <ListBooks
           books={this.state.books}
-          onChageShelf={(shelf, book) => {
-            this.updateBook(shelf, book)
-          }}
-          />
+          onChageShelf={this.updateBook}/>
         )}/>
+
         <Route path='/search' render={({ history }) => (
           <SearchBooks
             onSearchListBooks={() => {
@@ -62,6 +42,7 @@ class BooksApp extends React.Component {
             }}
           />
         )}/>
+
       </div>
     )
   }
