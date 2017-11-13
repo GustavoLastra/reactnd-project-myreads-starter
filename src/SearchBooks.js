@@ -21,18 +21,30 @@ class SearchBooks extends Component {
 
   updateQuery = (value) => {
     this.setState({ query: value.trim() })
-    if(this.state.query === '') {
+
+  /*  if(this.state.query === '') {
             this.setState({query: []})
         } else {
             BooksAPI.search(this.state.query, 20).then((books) => {
               this.setState({ books })
-                //if (Array.isArray(query)) {
-                    //this.checkForBooksInShelves(query)
-                //}
             })
             console.log("bookssearch "+ this.state.books)
         }
+        */
   }
+
+  handleInputChange = (value) => {
+      this.setState({ query:  value })
+      if(this.state.query === '') {
+          this.setState({books: []})
+      } else {
+        BooksAPI.search(this.state.query, 20).then((books) => {
+          this.setState({ books })
+        })
+      }
+  }
+
+
 
   clearQuery = () => {
     this.setState({ query: '' })
@@ -51,7 +63,7 @@ class SearchBooks extends Component {
             type="text"
             placeholder="Search by title or author"
             value={query}
-            onChange={(event) => this.updateQuery(event.target.value)}/>
+            onChange={(event) => this.handleInputChange(event.target.value)}/>
           </div>
         </div>
 
