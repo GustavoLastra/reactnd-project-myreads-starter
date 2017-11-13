@@ -39,6 +39,7 @@ class BooksApp extends React.Component {
             onSearchListBooks={() => {
               history.push('/')
             }}
+            onChageShelf={this.updateBook}
           />
         )}/>
 

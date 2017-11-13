@@ -10,9 +10,9 @@ function Shelf (props) {
           <h2 className="bookshelf-title">{title}</h2>
           <div className="bookshelf-books">
           	<Book
-            books= {books}
-            title= {title}
-            onChageShelf={onChageShelf} 
+            books={books}
+            title={title}
+            onChageShelf={onChageShelf}
             />
           </div>
         </div>

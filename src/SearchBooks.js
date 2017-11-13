@@ -40,6 +40,7 @@ class SearchBooks extends Component {
 
   render() {
     const { query, books} = this.state
+    const {onChageShelf } = this.props
 
     return (
       <div className="search-books">
@@ -59,6 +60,7 @@ class SearchBooks extends Component {
           <Shelf
             books={books}
             title='Search result'
+            onChageShelf={onChageShelf}
           />
         </div>
       </div>
