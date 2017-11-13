@@ -1,7 +1,7 @@
 import React from 'react'
 import { Route } from 'react-router-dom' //imported the React Router
 import SearchBooks from './SearchBooks'
-import ListBooks from './ListBooks'
+import ListShelf from './ListShelf'
 import * as BooksAPI from './BooksAPI'
 import './App.css'
 
@@ -30,11 +30,10 @@ class BooksApp extends React.Component {
       <div className="app">
 
         <Route exact path='/' render={() => (
-          <ListBooks
+          <ListShelf
           books={this.state.books}
           onChageShelf={this.updateBook}/>
         )}/>
-
         <Route path='/search' render={({ history }) => (
           <SearchBooks
             onSearchListBooks={() => {

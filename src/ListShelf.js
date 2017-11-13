@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom'
 import Shelf from './Shelf'
 
-function ListBooks (props) {
+function ListShelf (props) {
 
     const { books, onChageShelf } = props
 
@@ -37,4 +37,4 @@ function ListBooks (props) {
 
 }
 
-export default ListBooks
+export default ListShelf
