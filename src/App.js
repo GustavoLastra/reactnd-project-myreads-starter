@@ -31,13 +31,13 @@ class BooksApp extends React.Component {
     })
   }
 
-  isBookOnShelf = (books, searchResults) => {
-      searchResults.forEach((searchResult) => {
+  onShelf = (books, bookSearches) => {
+      bookSearches.forEach((bookSearch) => {
           books.forEach((book) => {
-              book.id === searchResult.id ? searchResult.shelf = book.shelf : searchResult.shelf = 'none'
+              book.id === bookSearch.id ? bookSearch.shelf = book.shelf : bookSearch.shelf = 'none'
           })
       })
-      return searchResults;
+      return bookSearches;
   }
 
   render() {
@@ -54,7 +54,7 @@ class BooksApp extends React.Component {
               history.push('/')
             }}
             books={this.state.books}
-            isBookOnShelf={this.isBookOnShelf}
+            onShelf={this.onShelf}
             onChageShelf={this.updateBook}
           />
         )}/>

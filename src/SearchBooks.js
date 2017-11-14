@@ -27,7 +27,7 @@ class SearchBooks extends Component {
           if (!books || books.hasOwnProperty('error')){
               this.setState({ books: []})
           } else {
-              books =  this.props.isBookOnShelf(this.props.books, books)
+              books =  this.props.onShelf(this.props.books, books)
               this.setState({ books })
           }
         })
