@@ -1,6 +1,9 @@
 {
   "dependencies": {
+    "debounce": "^1.1.0",
     "escape-string-regexp": "^1.0.5",
+    "lodash.chunk": "^4.2.0",
+    "lodash.debounce": "^4.0.8",
     "prop-types": "^15.5.8",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",

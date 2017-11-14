@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom' //imported the React Router
 import SearchBooks from './SearchBooks'
 import ListShelf from './ListShelf'
 import * as BooksAPI from './BooksAPI'
+
 import './App.css'
 
 class BooksApp extends React.Component {
@@ -30,14 +31,25 @@ class BooksApp extends React.Component {
     })
   }
 
-  onShelf = (books, bookSearch) => {
+  /*onShelf = (books, bookSearch) => {
     for(var i=0; i<bookSearch.length;i++){
       for(var j=0; i<books.length;i++){
         books[j].id === bookSearch[i].id ? bookSearch[i].shelf = books[j].shelf : bookSearch[i].shelf = 'none'
       }
     }
     return bookSearch;
-  }
+  }*/
+  onShelf = (books, bookSearch) => {
+  return bookSearch.map(book => {
+      const matchBook = books.find(b => b.id === book.id)
+      if (matchBook) {
+        book.shelf = matchBook.shelf
+      } else {
+        book.shelf = 'none'
+      }
+      return book
+  })
+}
 
   render() {
     return (

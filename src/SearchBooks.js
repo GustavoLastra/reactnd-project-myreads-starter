@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import Shelf from './Shelf'
 import * as BooksAPI from './BooksAPI'
+import debounce from 'lodash.debounce'
 
 class SearchBooks extends Component {
 
@@ -21,7 +22,7 @@ class SearchBooks extends Component {
     this.setState({ query: '' })
   }
 
-  handleInputChange = (value) => {
+  handleInputChange = debounce((value) => {
     this.updateQuery(value)
     BooksAPI.search(this.state.query, 20).then(books => {
       if (!books || books.hasOwnProperty('error')){
@@ -31,7 +32,7 @@ class SearchBooks extends Component {
           this.setState({ books })
       }
     })
-  }
+  },1)
 
   render() {
     const { query, books} = this.state
