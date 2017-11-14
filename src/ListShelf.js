@@ -13,7 +13,6 @@ function ListShelf (props) {
       </div>
       <div className="list-books-content">
         <div>
-
         <Shelf
           books={books.filter(book => book.shelf === "currentlyReading" )}
           title='Currently reading'

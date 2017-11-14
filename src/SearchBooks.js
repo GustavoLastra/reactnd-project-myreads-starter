@@ -1,64 +1,48 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import Shelf from './Shelf'
-import escapeRegExp from 'escape-string-regexp'
-import sortBy from 'sort-by'
 import * as BooksAPI from './BooksAPI'
-//import PropTypes from 'prop-types'
-//import escapeRegExp from 'escape-string-regexp'
-//import sortBy from 'sort-by'
 
 class SearchBooks extends Component {
-  /*static propTypes = {
-    contacts: PropTypes.array.isRequired,
-    onDeleteContact: PropTypes.func.isRequired
-  }*/
 
-  state = {
-    query: '',
-    books: []
-  }
-
-  updateQuery = (value) => {
-    this.setState({ query: value.trim() })
-
-  /*  if(this.state.query === '') {
-            this.setState({query: []})
-        } else {
-            BooksAPI.search(this.state.query, 20).then((books) => {
-              this.setState({ books })
-            })
-            console.log("bookssearch "+ this.state.books)
-        }
-        */
-  }
-
-  handleInputChange = (value) => {
-      this.setState({ query:  value })
-      if(this.state.query === '') {
-          this.setState({books: []})
-      } else {
-        BooksAPI.search(this.state.query, 20).then((books) => {
-          this.setState({ books })
-        })
+  constructor(props){
+      super(props)
+      this.state = {
+          query: '',
+          books: []
       }
   }
 
-
+  updateQuery = value => {
+    this.setState({ query: value.trim() })
+  }
 
   clearQuery = () => {
     this.setState({ query: '' })
   }
 
+  handleInputChange = (value) => {
+        this.updateQuery(value)
+        BooksAPI.search(this.state.query, 20).then(books => {
+          if (!books || books.hasOwnProperty('error')){
+              this.setState({ books: []})
+          } else {
+              books =  this.props.isBookOnShelf(this.props.books, books)
+              this.setState({ books })
+          }
+        })
+  }
+
   render() {
     const { query, books} = this.state
-    const {onChageShelf } = this.props
+    const { onChageShelf} = this.props
 
     return (
       <div className="search-books">
         <div className="search-books-bar">
           <Link className="close-search" to='/'>Close</Link>
           <div className="search-books-input-wrapper">
+
             <input
             type="text"
             placeholder="Search by title or author"
@@ -69,19 +53,15 @@ class SearchBooks extends Component {
 
         <div className="search-books-results">
           <ol className="books-grid"></ol>
-          <Shelf
-            books={books}
-            title='Search result'
-            onChageShelf={onChageShelf}
-          />
-        </div>
+            <Shelf
+              books={books}
+              title='Search result'
+              onChageShelf={onChageShelf}
+            />
+          </div>
       </div>
     )
   }
 }
-/*ListContacts.propTypes = {
-  contacts: PropTypes.array.isRequired,
-  onDeleteContact: PropTypes.func.isRequired
-}*/
 
 export default SearchBooks

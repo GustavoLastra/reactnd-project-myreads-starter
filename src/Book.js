@@ -2,7 +2,7 @@ import React from 'react';
 
 
 function Shelf (props) {
-  const { books, title, onChageShelf  } = props
+  const { books, onChageShelf  } = props
   return (
     <ol className="books-grid">
     {books.map((book)=>(
@@ -11,13 +11,13 @@ function Shelf (props) {
           <div className="book-top">
             <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
             <div className="book-shelf-changer">
-              <select
-                onChange={(event) => onChageShelf(event.target.value, book)}>
+              <select value={book.shelf}
+                onChange={(event) => onChageShelf(event.target.value,book)}>
                 <option value="none" disabled>Move to...</option>
-                <option value="none">None</option>
                 <option value="currentlyReading">Currently Reading</option>
                 <option value="wantToRead">Want to Read</option>
                 <option value="read">Read</option>
+                <option value="none">None</option>
               </select>
             </div>
           </div>
