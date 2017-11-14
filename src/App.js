@@ -36,11 +36,6 @@ class BooksApp extends React.Component {
         books[j].id === bookSearch[i].id ? bookSearch[i].shelf = books[j].shelf : bookSearch[i].shelf = 'none'
       }
     }
-    /*bookSearches.forEach((bookSearch) => {
-      books.forEach((book) => {
-        book.id === bookSearch.id ? bookSearch.shelf = book.shelf : bookSearch.shelf = 'none'
-      })
-    })*/
     return bookSearch;
   }
 
