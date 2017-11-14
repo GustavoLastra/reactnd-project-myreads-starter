@@ -7,11 +7,10 @@ import './App.css'
 
 class BooksApp extends React.Component {
   constructor(props){
-      super(props)
-      this.state = {
-          books: []
-      }
-
+    super(props)
+    this.state = {
+      books: []
+    }
   }
 
   componentDidMount() {
@@ -32,12 +31,12 @@ class BooksApp extends React.Component {
   }
 
   onShelf = (books, bookSearches) => {
-      bookSearches.forEach((bookSearch) => {
-          books.forEach((book) => {
-              book.id === bookSearch.id ? bookSearch.shelf = book.shelf : bookSearch.shelf = 'none'
-          })
+    bookSearches.forEach((bookSearch) => {
+      books.forEach((book) => {
+        book.id === bookSearch.id ? bookSearch.shelf = book.shelf : bookSearch.shelf = 'none'
       })
-      return bookSearches;
+    })
+    return bookSearches;
   }
 
   render() {
@@ -58,7 +57,6 @@ class BooksApp extends React.Component {
             onChageShelf={this.updateBook}
           />
         )}/>
-
       </div>
     )
   }

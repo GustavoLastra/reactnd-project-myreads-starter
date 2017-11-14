@@ -18,5 +18,4 @@ function Shelf (props) {
       )
 }
 
-
 export default Shelf

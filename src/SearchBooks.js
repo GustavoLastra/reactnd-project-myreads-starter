@@ -6,11 +6,11 @@ import * as BooksAPI from './BooksAPI'
 class SearchBooks extends Component {
 
   constructor(props){
-      super(props)
-      this.state = {
-          query: '',
-          books: []
-      }
+    super(props)
+    this.state = {
+      query: '',
+      books: []
+    }
   }
 
   updateQuery = value => {
@@ -22,15 +22,15 @@ class SearchBooks extends Component {
   }
 
   handleInputChange = (value) => {
-        this.updateQuery(value)
-        BooksAPI.search(this.state.query, 20).then(books => {
-          if (!books || books.hasOwnProperty('error')){
-              this.setState({ books: []})
-          } else {
-              books =  this.props.onShelf(this.props.books, books)
-              this.setState({ books })
-          }
-        })
+    this.updateQuery(value)
+    BooksAPI.search(this.state.query, 20).then(books => {
+      if (!books || books.hasOwnProperty('error')){
+        this.setState({ books: []})
+      } else {
+          books =  this.props.onShelf(this.props.books, books)
+          this.setState({ books })
+      }
+    })
   }
 
   render() {

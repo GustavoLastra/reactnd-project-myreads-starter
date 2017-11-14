@@ -3,9 +3,7 @@ import { Link } from 'react-router-dom'
 import Shelf from './Shelf'
 
 function ListShelf (props) {
-
     const { books, onChageShelf } = props
-
     return(
       <div className="list-books">
       <div className="list-books-title">
@@ -33,7 +31,6 @@ function ListShelf (props) {
         <Link to='/search'>Add a book</Link>
       </div>
     </div>)
-
 }
 
 export default ListShelf
