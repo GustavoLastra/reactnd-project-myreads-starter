@@ -30,13 +30,18 @@ class BooksApp extends React.Component {
     })
   }
 
-  onShelf = (books, bookSearches) => {
-    bookSearches.forEach((bookSearch) => {
+  onShelf = (books, bookSearch) => {
+    for(var i=0; i<bookSearch.length;i++){
+      for(var j=0; i<books.length;i++){
+        books[j].id === bookSearch[i].id ? bookSearch[i].shelf = books[j].shelf : bookSearch[i].shelf = 'none'
+      }
+    }
+    /*bookSearches.forEach((bookSearch) => {
       books.forEach((book) => {
         book.id === bookSearch.id ? bookSearch.shelf = book.shelf : bookSearch.shelf = 'none'
       })
-    })
-    return bookSearches;
+    })*/
+    return bookSearch;
   }
 
   render() {
